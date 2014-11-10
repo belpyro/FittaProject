@@ -5,6 +5,16 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FittaProject", "FittaProject\FittaProject.csproj", "{E741A534-73BA-4915-A586-C3481808F7DC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{59D90924-D474-4D4C-895D-3A086DEA0BC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{1DC4AEA1-1E46-4BFB-9A50-4ECF31ED2221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FittaClient.Test", "..\FittaClient.Test\FittaClient.Test.csproj", "{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FittaProject.Infrastructure", "..\FittaProject.Infrastructure\FittaProject.Infrastructure.csproj", "{D10C83BE-C537-4AD3-9535-A05500D55320}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FittaProject.States", "..\FittaProject.States\FittaProject.States.csproj", "{CB39A2E4-5D56-41E8-A2F1-854FC19822F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +25,26 @@ Global
 		{E741A534-73BA-4915-A586-C3481808F7DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E741A534-73BA-4915-A586-C3481808F7DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E741A534-73BA-4915-A586-C3481808F7DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D10C83BE-C537-4AD3-9535-A05500D55320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D10C83BE-C537-4AD3-9535-A05500D55320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D10C83BE-C537-4AD3-9535-A05500D55320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D10C83BE-C537-4AD3-9535-A05500D55320}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB39A2E4-5D56-41E8-A2F1-854FC19822F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB39A2E4-5D56-41E8-A2F1-854FC19822F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB39A2E4-5D56-41E8-A2F1-854FC19822F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB39A2E4-5D56-41E8-A2F1-854FC19822F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E741A534-73BA-4915-A586-C3481808F7DC} = {59D90924-D474-4D4C-895D-3A086DEA0BC2}
+		{8E6FC1A0-F197-4EDE-B4B0-D1547E2BFFC9} = {1DC4AEA1-1E46-4BFB-9A50-4ECF31ED2221}
+		{D10C83BE-C537-4AD3-9535-A05500D55320} = {59D90924-D474-4D4C-895D-3A086DEA0BC2}
+		{CB39A2E4-5D56-41E8-A2F1-854FC19822F7} = {59D90924-D474-4D4C-895D-3A086DEA0BC2}
 	EndGlobalSection
 EndGlobal
