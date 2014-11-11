@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WorkDebug|AnyCPU'">
+    <OutputPath>bin\WorkDebug\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -39,7 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IState.cs" />
+    <Compile Include="Messages\StateMessage.cs" />
+    <Compile Include="Messenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinyMessenger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

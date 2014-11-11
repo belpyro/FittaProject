@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FittaProject.Infrastructure;
-using FittaProject.States;
+﻿using FittaProject.Infrastructure;
+using FittaProject.Infrastructure.Messages;
 using PluginFramework;
 using UnityEngine;
 
@@ -19,8 +15,7 @@ namespace FittaClient.Test
 
             if (GUILayout.Button("SetupLocation state"))
             {
-                IState state = new SetupLocation();
-                state.Execute();
+                Messenger.Instance.Hub.Publish(new OrbitInitializeMessage(this));
             }
 
             GUILayout.EndVertical();

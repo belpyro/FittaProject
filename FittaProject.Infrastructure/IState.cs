@@ -2,6 +2,8 @@
 {
     public interface IState
     {
-        void Execute();
+        void Register();
+
+        void Unregister();
     }
 }

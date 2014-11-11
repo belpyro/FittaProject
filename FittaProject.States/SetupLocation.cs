@@ -1,26 +1,48 @@
 ﻿using System.IO;
 using System.Linq;
 using FittaProject.Infrastructure;
+using FittaProject.Infrastructure.Messages;
+using TinyMessenger;
 using UnityEngine;
 
 namespace FittaProject.States
 {
-    public class SetupLocation : IState
+    [KSPAddon(KSPAddon.Startup.Flight, true)]
+    public class SetupLocation :MonoBehaviour, IState
     {
+        void Awake()
+        {
+            Register();
+        }
+
+        void OnDestroy()
+        {
+            Unregister();
+        }
+
+        private TinyMessageSubscriptionToken _token;
+
+        public void Register()
+        {
+           _token = Messenger.Instance.Hub.Subscribe<OrbitInitializeMessage>(Execute);
+        }
+
+        public void Unregister()
+        {
+            Messenger.Instance.Hub.Unsubscribe<OrbitInitializeMessage>(_token);
+        }
+
         /// <summary>
         /// create vessel on custom orbit
         /// </summary>
-        public void Execute()
+        public void Execute(OrbitInitializeMessage orbitInitializeMessage)
         {
             //todo move vessel config to right location
-            string path = Path.Combine("Configs", "test.craft");
+            var path = Path.Combine("Configs", "test.craft");
 
-            string bodyName = "Mun";
-
-            string vesselName = "Kuk";
+            const string vesselName = "Argo";
 
             //todo move params to config
-            double minAltitude = 100000, maxAltitude = 100000;
 
             var protoVesselConfig = ConfigNode.Load(path);
 
@@ -28,10 +50,10 @@ namespace FittaProject.States
 
             var nodes = protoVesselConfig.GetNodes("PART");
 
-            var body = FlightGlobals.Bodies.FirstOrDefault(x => x.bodyName.Contains(bodyName));
+            var body = FlightGlobals.Bodies.FirstOrDefault(x => x.bodyName.Contains(orbitInitializeMessage.BodyName));
 
             var orbit = Orbit.CreateRandomOrbitAround(body,
-                body.Radius + minAltitude, body.Radius + maxAltitude);
+                body.Radius + orbitInitializeMessage.MinAltitude, body.Radius + orbitInitializeMessage.MaxAltitude);
 
             var vesselNode = ProtoVessel.CreateVesselNode(vesselName, VesselType.Ship, orbit, 0, nodes);
 

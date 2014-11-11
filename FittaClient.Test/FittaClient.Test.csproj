@@ -29,13 +29,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WorkDebug|AnyCPU'">
+    <OutputPath>E:\KSP_win\GameData\FittaClient\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\KSP_Dev_25\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>E:\KSP_win\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PluginFramework">
-      <HintPath>..\..\..\ProjectsGit\PluginFramework\bin\Debug\PluginFramework.dll</HintPath>
+      <HintPath>..\..\PluginFramework\bin\Debug\PluginFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,7 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\KSP_Dev_25\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>E:\KSP_win\KSP_Data\Managed\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
