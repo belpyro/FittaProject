@@ -18,6 +18,11 @@ namespace FittaClient.Test
                 Messenger.Instance.Hub.Publish(new OrbitInitializeMessage(this));
             }
 
+            if (GUILayout.Button("Checkpoint run"))
+            {
+                Messenger.Instance.Hub.Publish(new CheckPointMessage(this, "Mun"));
+            }
+
             GUILayout.EndVertical();
         }
     }

@@ -7,8 +7,8 @@ using UnityEngine;
 
 namespace FittaProject.States
 {
-    [KSPAddon(KSPAddon.Startup.Flight, true)]
-    public class SetupLocation :MonoBehaviour, IState
+    [KSPAddon(KSPAddon.Startup.EveryScene, false)]
+    public class SetupLocation : MonoBehaviour, IState
     {
         void Awake()
         {
@@ -24,12 +24,12 @@ namespace FittaProject.States
 
         public void Register()
         {
-           _token = Messenger.Instance.Hub.Subscribe<OrbitInitializeMessage>(Execute);
+            _token = Messenger.Instance.Hub.Subscribe<OrbitInitializeMessage>(Execute);
         }
 
         public void Unregister()
         {
-            Messenger.Instance.Hub.Unsubscribe<OrbitInitializeMessage>(_token);
+            _token.Dispose();
         }
 
         /// <summary>
@@ -38,19 +38,36 @@ namespace FittaProject.States
         public void Execute(OrbitInitializeMessage orbitInitializeMessage)
         {
             //todo move vessel config to right location
+            var gameDirectoryPath = GameDatabase.Instance.root.AllDirectories.First(x => x.type == UrlDir.DirectoryType.GameData).path;
+
             var path = Path.Combine("Configs", "test.craft");
+
+            path = Path.Combine("FittaClient", path);
+
+            var fullConfigPath = Path.Combine(gameDirectoryPath, path);
 
             const string vesselName = "Argo";
 
             //todo move params to config
 
-            var protoVesselConfig = ConfigNode.Load(path);
+            var protoVesselConfig = ConfigNode.Load(fullConfigPath);
 
-            if (protoVesselConfig == null) return;
+            if (protoVesselConfig == null)
+            {
+                //todo logger
+                Debug.LogWarning("Cannot load config");
+                return;
+            }
 
             var nodes = protoVesselConfig.GetNodes("PART");
 
             var body = FlightGlobals.Bodies.FirstOrDefault(x => x.bodyName.Contains(orbitInitializeMessage.BodyName));
+
+            if (body == null)
+            {
+                Debug.LogWarning("Cannot load body");
+                return;
+            }
 
             var orbit = Orbit.CreateRandomOrbitAround(body,
                 body.Radius + orbitInitializeMessage.MinAltitude, body.Radius + orbitInitializeMessage.MaxAltitude);

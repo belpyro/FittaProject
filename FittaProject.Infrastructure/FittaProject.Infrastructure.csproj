@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IState.cs" />
+    <Compile Include="Messages\CheckPointMessage.cs" />
+    <Compile Include="Messages\OrbitInitializeMessage.cs" />
     <Compile Include="Messages\StateMessage.cs" />
     <Compile Include="Messenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
